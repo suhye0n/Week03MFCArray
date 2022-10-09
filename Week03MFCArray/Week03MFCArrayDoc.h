@@ -14,8 +14,10 @@ protected:
 	CPoint Points[MAX_POINTS];
 public:
 	void AddPoint(CPoint p) {
-		if (Count < MAX_POINTS - 1)
+		if (Count < MAX_POINTS - 1) {
 			Points[Count++] = p;
+			SetModifiedFlag();
+		}
 	}
 	CPoint GetPoint(int i) { return Points[i]; }
 	int GetCount() { return Count; }
