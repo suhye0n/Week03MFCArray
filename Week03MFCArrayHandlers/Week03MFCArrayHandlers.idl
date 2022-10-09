@@ -1,0 +1,69 @@
+﻿// Week03MFCArrayHandlers.idl: Week03MFCArrayHandlers의 IDL 소스입니다.
+//
+
+// 이 파일은 MIDL 도구에 의해 처리되어
+// 형식 라이브러리(Week03MFCArrayHandlers.tlb) 및 마샬링 코드를 생성합니다.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(81389e9d-8f9c-4ac1-875b-cc984e716912),
+	pointer_default(unique)
+]
+interface IPreview : IUnknown
+{
+};
+
+[
+	object,
+	uuid(0f6e4bab-dd51-41ab-b9a0-7f05766ac9bd),
+	pointer_default(unique)
+]
+interface IThumbnail : IUnknown
+{
+};
+
+[
+	object,
+	uuid(7a4effbf-4074-45bf-bccd-27b3e7ca0684),
+	pointer_default(unique)
+]
+interface ISearch : IUnknown
+{
+};
+
+[
+	uuid(85eb6814-42a6-4d64-a11f-155b7b801b66),
+	version(1.0),
+]
+library Week03MFCArrayHandlersLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(e7a8e8bb-1f48-4573-ab71-df26333e152a)
+	]
+	coclass Preview
+	{
+		[default] interface IPreviewHandler;
+	};
+	[
+		uuid(d0c1820f-90e0-490b-9256-34e3ecbf0211)
+	]
+	coclass Thumbnail
+	{
+		[default] interface IThumbnailProvider;
+	};
+	[
+		uuid(897eae75-8024-4438-9776-9596d49ec0af)
+	]
+	coclass Search
+	{
+		[default] interface IFilter;
+	};
+};
+
+import "shobjidl.idl";
+import "thumbcache.idl";
+import "filter.idl";
