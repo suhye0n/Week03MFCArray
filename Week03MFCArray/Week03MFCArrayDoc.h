@@ -10,17 +10,19 @@
 class CWeek03MFCArrayDoc : public CDocument
 {
 protected:
-	int Count = 0;
-	CPoint Points[MAX_POINTS];
+	CArray <CPoint, CPoint&> Points;
+
 public:
-	void AddPoint(CPoint p) {
-		if (Count < MAX_POINTS - 1) {
-			Points[Count++] = p;
-			SetModifiedFlag();
+	void AddPoint(CPoint p) { Points.Add(p); SetModifiedFlag(); }
+	CPoint GetPoint(int i) { return Points[i]; }
+	int GetCount() { return Points.GetCount(); }
+
+	void Undo() {
+		if (Points.GetCount() > 0) {
+			Points.RemoveAt(Points.GetCount() - 1);
+			SetModifiedFlag(TRUE);	// TRUE가 default 값
 		}
 	}
-	CPoint GetPoint(int i) { return Points[i]; }
-	int GetCount() { return Count; }
 
 protected: // serialization에서만 만들어집니다.
 	CWeek03MFCArrayDoc() noexcept;
